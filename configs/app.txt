@@ -1,0 +1,55 @@
+{
+	
+	"============":"Use https://jsonformatter.curiousconcept.com/ to validate your JSON",
+
+	"------------":"Please add app name below.------",
+	"name":"Friendly Linux Commandline",
+
+	"------------":"Full system path on server.-------",
+	"systemPath":"/Applications/MAMP/htdocs/php/linux",
+
+	"------------":"http or https------",
+	"httpProtocol":"http",
+
+	"------------":"App URL. Leave trailing slashes and HTTP protocol out. Include subdomain(s).-------",
+	"url":"wdtest.io",
+
+	"------------":"[on|off] Leave on to see time and memory usage stats.-------",
+	"profiler":"off",
+
+	"------------":"your app's timezone.-------",
+	"timezone":"America/Toronto",
+
+	"------------":"Path to Controllers directory from application root.------------",
+	"controllersDir":"src/App/Controllers",
+
+	"------------":"Namespace of your Query definitions.------",
+	"------------":"Usually set up in src/App/Queries.------",
+	"------------":"Ensure namespace is included in composer's autoload settings.-----",
+	"queryClassesNamespace":"App\\Queries",
+
+	"------------":"Path to HTML view files from application root.-------",
+	"viewsDir":"src/App/Views",
+
+	"------------":"Enable XSS security check? Recommended.------",
+	"xssCheck":false,
+	
+	"csrf":{
+		"-------":"[true|false] Enable CSRF checks? Recommended.------",
+		"check":false,
+		
+		"-------":"[allowed|no] Null origins allowed in CSRF checks?------",
+		"nullOrigins":"allowed",
+		
+		"-------":"Enable tokenizition on forms? Better protects against attacks.------",
+		"tokenization":true,
+		
+		"-------":"CSRF Tokens generated in a form will expire in this many seconds.------",
+		"-------":"A value of 0 (zero) will make the token last forever.------",
+		"tokenLife":"36000",
+		
+		"-------":"Used by CSRF tokens.------",
+		"secretKey":"jkasdh89q8nkskjdha89789yhas"
+	}
+
+}

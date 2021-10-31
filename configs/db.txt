@@ -1,0 +1,15 @@
+{
+
+	"============":"Use https://jsonformatter.curiousconcept.com/ to validate your JSON",
+
+	"------------":"Define database configurations.-------",
+	"name":"test",
+	"user":"root",
+	"password":"mal123",
+	"host":"127.0.0.1",
+	"driver":"mysql",
+
+	"------------":"Used by Doctrine-Migrations.-------",
+	"driverDoctrine":"pdo_mysql"
+
+}

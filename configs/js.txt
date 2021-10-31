@@ -1,0 +1,14 @@
+{
+
+	"============":"Use https://jsonformatter.curiousconcept.com/ to validate your JSON",
+
+	"------------":"Add here any settings you wish to pass along to Javascript in the view..------",
+
+
+	"------------":"Your app name.------",
+	"name":"Friendly Linux Commandline",
+
+	"------------":"Full URL including HTTP protocol.-------",
+	"url":"http://localhost/"
+
+}

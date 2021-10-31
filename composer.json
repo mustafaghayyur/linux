@@ -1,0 +1,13 @@
+{
+    "require": {
+        "dotz/framework": "^0.2.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "": "src/"
+        },
+        "files": [
+            "modules.php"
+        ]
+    }
+}

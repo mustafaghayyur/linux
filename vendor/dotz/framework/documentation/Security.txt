@@ -1,0 +1,107 @@
+====================================================
+====================================================
+	> SECURITY & BEING SECURE
+====================================================
+====================================================
+
+
+Please read the Inputs section along with this section to better understand security in Dotz Framework.
+
+Many developers are good at development, but lack confidence on security matters. PHP is a beautiful language but hasn't made its various security options very easy to use.
+
+Dotz Framework wishes to make security easy.
+
+
+===================
+## SQL Injection
+===================
+
+SQL Injection threats can be minimized with prepared statements, therefore, we have made prepared statements intuitive and easy to use. To make a query on your database, simply call:
+
+	$this->query->execute('query string with placeholders like where id = ?', $arrayOfActualInputs);
+
+This will carry out an execution of the prepared statement. Please read and understand Prepared Statements here:
+
+	// Please understand Prepared statements:
+	https://www.php.net/manual/en/pdo.prepare.php
+
+However, raw queries are still supported with the $this->query->raw() call:
+
+$this->query->raw('query string with raw inputs like where id = 7');
+
+Notice how the placeholder '?' has been replaced with an actual value '7'.
+
+
+===================
+## Inputs
+===================
+
+The other security threat web software face comes from GET & POST inputs. Securing inputs is therefore made simple with the addition of ->secure() and ->verySecure() method calls to the get and post data retrieval process.
+
+To get a highly validated GET and POST data, you simply have to enable the xssCheck, csrf.check and csrf.tokenization settings in configs/app.txt. Then use the:
+
+	$this->input->secure()->post();
+
+	and
+
+	$this->input->verySecure()->get();
+
+...to get values that are filtered for XSS vulnerabilities, checked for CSRF origin-host matching, and un-adulterated JWT tokens. 
+
+
+We hope that with such intuitive calls, more developers will be able to secure their applications.
+
+
+
+===================
+## CSRF Tokens
+===================
+
+In case you need to generate CSRF security tokens on your own. The CSRF class can help.
+
+	use DotzFramework\Utilities\CSRF;
+
+	//generate a new token (JWT)
+	$token = CSRF::generateToken();
+
+	//validate a token received from a HTTP request
+	$valid = CSRF::validateToken($token); // boolean value
+
+All POST retieval requests with the Input library using the secure() call are checked for a valid token, when csrf.check and csrf.tokenization are enabled in the configurations. 
+
+GET retievals are not, unless you call the verySecure() version of the call.
+
+		 
+
+======================================
+## CSRF Origins Check
+======================================
+
+You can also check whether the HTTP Origin/Referer header and the HTTP Host header match using:
+
+	use DotzFramework\Utilities\CSRF;
+
+	if(CSRF::checkOrigin()){
+		// origins okay…
+	}else{
+		// origins not okay
+	}
+
+All inputs retrieved with the Input library using the secure call are screened for a CSRF orgin check when the csrf.check is enbaled in the configurations.
+
+ 
+
+===================
+## XSS Filtering
+===================
+
+The Inputs page does not delve into details of how the GET & POST inputs are filtered. Dotz Framework utilizes Symfony’s HTTP Foundation’s $this->request->filter() method.
+
+The filter method uses PHP’s native function filter_var to carry out the filtering process of the retrieved GET/POST vars and scrub them against the filter you specify. The default filter is FILTER_DEFAULT. You should see the full list of filters accepted by the filter parameter in $this->input->get() & $this->input->post() (as the second parameter of course):
+
+https://www.php.net/manual/en/filter.filters.php
+
+In a nut shell, if you have xssCheck enabled in your configurations, all inputs (GET & POST) will be filtered with the htmlspecialchars() filter; unless it is explicitly turned off in the call.
+
+
+

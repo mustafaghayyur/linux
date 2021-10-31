@@ -1,0 +1,21 @@
+{
+
+	"============":"Use https://jsonformatter.curiousconcept.com/ to validate your JSON",
+
+	"------------":"Controller for the homepage.-------",
+	"default":"index@PagesController",
+
+	"------------":"Controller for the 404 error page.-------",
+	"notFound":"notFound@PagesController",
+
+	"------------":"Custom URLs.-------",
+	"custom":{
+		"get":"showGetVars@PagesController",
+		"submit":"showPostVars@PagesController"
+	},
+
+	"------------":"REST Controllers.-------",
+	"rest":{
+		"uri-for-resource":"ControllerNameForResource"
+	}
+}

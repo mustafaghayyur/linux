@@ -1,0 +1,17 @@
+#!/usr/bin/env php
+<?php
+/**
+ * Dotz setup/update handling script.
+ */
+
+require 'vendor/autoload.php';
+
+use Symfony\Component\Console\Application;
+use App\Cli\OpenCommand;
+
+$application = new Application();
+
+// ... register commands
+$application->add(new OpenCommand());
+
+$application->run();

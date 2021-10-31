@@ -1,0 +1,42 @@
+====================================================
+====================================================
+	> DEALING WITH UPDATES
+====================================================
+====================================================
+
+
+When Composer updates the framework, all core files should be updated automatically.
+
+However, the files and folders that:
+	
+	php vendor/dotz/framework/dotz setup
+
+...copied over to the root of your application, will not be updated automatically.
+
+This is to protect you from loosing your valuable configurations.
+
+
+## What you should do:
+===================================================
+
+
+	1) Run the following command in the command line after every composer update:
+	
+		php vendor/dotz/framework/dotz update
+
+	This will update the documentation folder with the latest documentation.
+
+	
+	2) Test for any new exceptions thrown in your existing app. If some used property or method has been renamed/removed an exception will be thrown with some message declaring an Update Error and providing guidance on how to remedy the problem:
+
+		Notice:
+		Update Error: <--explaination of how to fix the error-->
+
+	When you find an error/exception/systemMessage that declares an Update Error, follow the instructions to fix the problem and get rid of the issue.
+
+	Please note there are times, when an update modification simply cannot be handled by Dotz Framework's Error Handling logic, and a raw PHP Error is thrown. We are cautious to make sure that does not happen often. 
+
+	Please also read the documentation/ChangeLog.txt file for instructions when you update dotz/framework. 
+
+	If you get stuck after an update, feel free to reach us at info@web-dotz.com with a screen shot of your error message, and some basic server environment details, and we would love to help if we can.
+

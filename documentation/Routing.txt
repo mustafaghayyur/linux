@@ -1,0 +1,121 @@
+====================================================
+====================================================
+	> DEFINING ROUTES
+====================================================
+====================================================
+
+
+Routes are simple in Dotz Framework.
+
+==========================================
+## Class / Method Auto Routing
+==========================================
+
+When you set up a controller class with a name ClassController and a method 'index', this index controller will be auto-enabled to become accessible with the url:
+
+	http://yourappurl.com/class/index
+
+Dotz Framework takes the class name (less the suffix) and the method name as the first two URI elements and attempts to route to them when a custom url or resource rule is not defined in the configs/router.txt file.
+
+
+=====================
+## Custom URL Rules
+=====================
+
+You can define custom URLs that lead to a specific controller in your app.
+
+If you have the need for a custom URL, add a “uri”:”method@classname” property inside the  ‘custom’ property object in configs/routers.txt:
+		
+		{
+			// other properties...
+
+			custom: {
+				"custom-uri":"method@ClassnameController"
+			}
+
+			// other properties...
+		}
+
+Where method is the method name in ClassnameController class. The @ symbol separates the method from the class name.
+
+
+
+=====================
+## REST Resources
+=====================
+
+REST API routes typically get bundled by objects, with each class holding various methods for each HTTP method. 
+
+That is why we have designed their routes as follows.
+
+In configs/routers.txt:
+	- Add a new uri in the following format inside the rest property:
+		
+		{
+			// other properties...
+
+			rest: {
+				"uri-for-resource":"ControllerNameForResource"
+			}
+
+			// other properties...
+		}
+
+The HTTP method of the request will then determine which method of ControllerNameForResource is utilized.
+
+
+
+=====================
+## Home Page
+=====================
+
+The home page or the default app page can be defined in the default property of the configs/router.txt file:
+		
+		{
+			"default":"index@PagesController",
+		}
+
+=====================
+## 404 Error Page
+=====================
+
+The 404 error page or the not found page can be defined in the notFound property of the configs/router.txt file:
+		
+		{
+			"notFound":"notFound@PagesController",
+		}
+
+==============================
+## Multi level URIs
+==============================
+
+You may have noticed that custom urls supported by Dotz are single level. In your application you may come across a need for urls that span several levels.
+
+How do you configure Dotz to have multi level URIs? It's really simple:
+
+In your custom routes, like all other routes, you can pass in any number of additional URI elements so:
+
+	www.yourapp.com/some-custom-uri/can/have/this/many/path/segments
+
+And each of these elements of the URI will be passed along as a separate argument to the controller assigned to 'some-custom-uri'.
+
+So you can set-up the 'some-customer-uri' controller to be a pure decision making controller directing the user to the appropriate sub-controller based on the remaining URI path elements it receives as arguments.
+
+No limits!
+
+
+==========================================
+## Note on JSON Formatting
+==========================================
+
+Each config file is meant to be a JSON object with definition properties. 
+
+Be sure to follow correct protocols while working with these files. 
+
+Slight errors, such as:
+	- a comma at the end of the last property definition, 
+	- or using single quotes instead of double quotes 
+
+...will cause the entire config file to become unavailable to the Dotz Framework.
+
+We recommend using https://jsonformatter.curiousconcept.com/ to verify your JSON is valid.
